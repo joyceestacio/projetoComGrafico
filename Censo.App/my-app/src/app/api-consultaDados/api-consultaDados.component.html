@@ -1,0 +1,71 @@
+<div class="container p-4">
+  <div class="card" style="height: 600px;">
+    <div class="card-body">
+      <!-- tabela com dados dos professores titulados -->
+      <table class="table">
+        <caption>Tabela com as quantidades das titulações dos professores.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Doutor</th>
+            <th scope="col">Mestre</th>
+            <th scope="col">Regime</th>
+            <th scope="col">Tempo Integral</th>
+            <th scope="col">Tempo Parcial</th>
+            <th scope="col">Horista</th>
+            <th scope="col">Professores</th>
+            <th scope="col">Titulado</th>
+            <th scope="col">Especialista</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{dados?.qtdDoutor}}</td>
+            <td>{{dados?.qtdMestre}}</td>
+            <td>{{dados?.qtdRegime}}</td>
+            <td>{{dados?.qtdTempoIntegral}}</td>
+            <td>{{dados?.qtdTempoParcial}}</td>
+            <td>{{dados?.qtdHorista}}</td>
+            <td>{{dados?.qtdProfessores}}</td>
+            <td>{{dados?.qtdNTitulado}}</td>
+            <td>{{dados?.qtdEspecialista}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <!--------------------------------------------------->
+        <div class="row">
+          <div class="col-md-6">
+             <!-- GRÁFICO REDONDO-->
+          <ngx-charts-pie-grid 
+          [view]="view" 
+          [scheme]="colorScheme" 
+          [results]="informacoesProfessor"
+          (select)="onSelect($event)">
+      </ngx-charts-pie-grid>
+          </div>
+
+          <div class="col-md-6"> <!-- GRÁFICO BARRA-->
+            <ngx-charts-bar-vertical 
+                [view]="view2" 
+                [scheme]="colorScheme" 
+                [results]="dadosGrafico" 
+                [gradient]="gradient"
+                [xAxis]="showXAxis" 
+                [yAxis]="showYAxis" 
+                [legend]="showLegend" 
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel" 
+                [xAxisLabel]="xAxisLabel" 
+                [yAxisLabel]="yAxisLabel"
+              (select)="onSelect($event)">
+            </ngx-charts-bar-vertical></div>
+        </div>
+         
+
+         
+
+    </div>
+  </div>
+
+</div>

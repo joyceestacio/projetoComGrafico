@@ -1,0 +1,255 @@
+<div class="container m-5">
+  <h5>MQD 2 – Movimentação de Quadro Docente – Atividades Fora de Sala de Aula</h5>
+</div>
+
+<!--------------------->
+<div class="mb-3" style="margin-left: 146px;">
+  <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#modalExemplo">
+    Pesquisar Docente
+  </button>
+</div>
+<!--------------------->
+
+
+<div id="pdf_View">
+  <table class="table table-bordered container">
+    <thead>
+      <tr>
+        <td colspan="5">MQD 2 – Movimentação de Quadro Docente – Atividades Fora de Sala de Aula</td>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- part 1 -->
+      <tr style="background-color: #E8E8E8;">
+        <th>Nome do Docente</th>
+        <th>Matrícula(s)</th>
+        <th>Data de Admissão </th>
+        <th>Última Avaliação</th>
+        <th>E-mail </th>
+      </tr>
+      <tr>
+        <td>
+          <!-- Botão para adicionar modal -->
+          {{ProfessorAdicionado?.nomProfessor}}
+        </td>
+        <td>
+          <select class="form-control" [(ngModel)]="matSec">
+            <option value="-1">Selecione</option>
+            <option *ngFor="let item of matriculasFiltradas" value="{{item.dtAdmissao}}">{{item.numMatricula}}</option>
+          </select>
+        </td>
+        <td style="width: 12%;">
+          <div *ngIf="matSec != -1"> {{matSec}}</div>
+        </td>
+        <td><input type="text" class="form-control col-md-12"></td>
+        <td><input type="text" class="form-control col-md-12"></td>
+      </tr>
+      <!-- fim part 1 -->
+
+      <!-- part 2 -->
+      <tr style="background-color: #E8E8E8;">
+        <th colspan="3">Qualificação Acadêmica</th>
+        <th>Telefone residencial</th>
+        <th> Telefone celular </th>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <select class="form-control">
+            <option value="-1" disabled>-- Selecione uma Qualificação --</option>
+            <option value="1">Graduação</option>
+            <option value="2">Especialização</option>
+            <option value="2">Mestrado</option>
+            <option value="2">Doutorado</option>
+            <option value="2">Outros</option>
+          </select>
+        </td>
+        <td> <input type="text" class="form-control"> </td> <!-- tel residencial-->
+        <td> <input type="text" class="form-control"> </td> <!-- tel celular -->
+      </tr>
+      <!-- fim part 2 -->
+
+      <!-- part 3 -->
+      <tr style="background-color: #D3D3D3;">
+        <th colspan="5">Situação Proposta na Instituição (Selecionar a opção TI ou TP e informe no quadro ao lado a
+          C/Hor/Sem em sala de aula e fora de sala de aula)</th>
+      </tr>
+      <tr style="background-color: #E8E8E8;">
+        <th colspan="3">TI/TP</th>
+        <th>Carga Semanal em Sala</th>
+        <th>Carga Semanal Fora de Sala</th>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <select class="form-control">
+            <option value="-1" disabled>-- Selecione uma Qualificação --</option>
+            <option value="1">Tempo Integral</option>
+            <option value="2">Tempo Parcial</option>
+          </select>
+        </td>
+        <td>{{cargaDs  | number : '1.0-1'}}</td> <!-- DS -->
+        <td>{{cargaFs  | number : '1.0-1'}}</td> <!-- FS -->
+      </tr>
+      <!-- fim part 3 -->
+
+      <!-- part 4 -->
+      <tr style="background-color: #D3D3D3;">
+        <th colspan="5">Atividades Fora de Sala (Informar o nome da(s) Atividade(s) conforme legenda, preencher ao lado
+          as
+          informações complementares e indicar se é Inclusão ou Retirada)</th>
+      </tr>
+      <!-- fim part 4 -->
+    </tbody>
+  </table>
+
+  <!-- part 5 -->
+  <table class="table table-sm container">
+    <tbody>
+      <tr>
+        <td>Atividades</td>
+        <td>Campus</td>
+        <td>Curso</td>
+        <td>C/Hor/Sem</td>
+        <td>Período (de)</td>
+        <td>Período (até)</td>
+        <td>Incluir/Retirar</td>
+        <td>Pagamento Retroativo?</td>
+      </tr>
+      <tr>
+        <td><input type="text" class="form-control" style="width: 170px;"> </td>
+        <td><input type="text" class="form-control" style="width: 120px;"> </td>
+        <td><input type="text" class="form-control" style="width: 120px;"> </td>
+        <td><input type="text" class="form-control"> </td>
+        <td><input class="form-control col-md-12" placeholder="dd/mm/aaaa" bsDatepicker placement="top"
+            [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue' }" style="width: 120px;">
+        </td>
+        <td><input class="form-control " placeholder="dd/mm/aaaa" bsDatepicker placement="top"
+            [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue' }" style="width: 120px;">
+        </td>
+        <td>
+          <select class="form-control col-md-8">
+            <option value="-1" disabled>Selecione</option>
+            <option value="1">Incluir</option>
+            <option value="2">Retirar</option>
+          </select>
+        </td>
+
+        <td>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Sim</label>
+          </div>
+        </td>
+      </tr>
+      <!-- fim part 5-->
+
+      <!-- part 6 -->
+      <tr style="background-color: #D3D3D3;">
+        <th colspan="8">Substituição?</th>
+      </tr>
+      <tr>
+
+        <td colspan="8">
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+              checked>
+            <label class="form-check-label" for="exampleRadios1">
+              Sim
+            </label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+              checked>
+            <label class="form-check-label" for="exampleRadios1">
+              Não
+            </label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <div>Se afirmativo, preencher a(s) MQD(s) para retirada do(s) professor(es) substituído(s)</div>
+          </div>
+
+        </td>
+
+      </tr>
+      <!-- fim part 6 -->
+
+      <!-- part 7 -->
+      <tr>
+        <td colspan="6">Observações Gerais:</td>
+        <td colspan="2">Aprovação da Pró-Reitoria de Graduação</td>
+      </tr>
+      <tr>
+        <td colspan="6"><textarea class="form-control" rows="4"></textarea></td>
+        <td colspan="2">
+          <div class="text-left">
+            ____/____/____
+          </div>
+          <br>
+          _______________________________________________________________________ <p></p>
+          _______________________________________________________________________
+        </td>
+      </tr>
+      <!-- fim part 7 -->
+    </tbody>
+  </table>
+</div>
+<div class="container">
+  <button class="btn btn-primary" (click)="print()"><i class="fas fa-file-pdf"></i> PDF</button>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="modalExemplo" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pesquisar Docente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- menu pesquisar -->
+        <div class="input-group mb-0 col-md-12 tabela-centralizada mt-3 p-3">
+          <input (keyup)="filtrarItem($event.target.value)" type="text" class="form-control"
+            placeholder="Digite alguma coisa.." aria-label="Recipient's username" aria-describedby="basic-addon2">
+        </div>
+        <!--  <button class="btn btn-danger btn-sm mt-2" (click)="limparLista()" tooltip="limpar tudo">Limpar Pesquisa</button> -->
+        <!-- fim menu pesquisar -->
+
+        <!-- tabela dentro do modal-->
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">CPF</th>
+              <th scope="col">Nome</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of dadosFiltrados">
+              <td>{{item.cpfProfessor}}</td>
+              <td>{{item.nomProfessor}}</td>
+              <td class="modal-footer">
+                <button type="button" id="{{item.cpfProfessor}}" class="btn btn-primary btn-sm mt-2"
+                  (click)="addProfessor(item)" data-dismiss="modal">selecionar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- fim da tabela dentro do modal-->
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- fim modal-->
